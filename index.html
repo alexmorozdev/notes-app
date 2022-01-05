@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/d406c2900f.js" crossorigin="anonymous"></script>
+
+    <title>Task 1</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Notes</h1>
+        <table class='notes-table'>
+            <thead>
+                <tr id="all-content">
+                    <th></th>
+                    <th>Name</th>
+                    <th>Created</th>
+                    <th>Category</th>
+                    <th>Content</th>
+                    <th>Dates</th>
+                    <th></th>
+                    <th><i class="icon archive-all fas fa-archive"></i></th>
+                    <th><i class="icon delete-all fas fa-trash"></i></th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="9"><button class="buttom create-note">Create Note</button></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="add-note hide">
+            <form class="add-form">
+                <h2>Add note</h2>
+                <div>
+                  <label>Note type: </label>
+                  <select name="category" required="required">
+                    <option value="">Choose a note type</option>
+                    <option value="task">Task</option>
+                    <option value="thought">Random thought</option>
+                    <option value="idea">Idea</option>
+                  </select> 
+                </div>
+                <div>
+                  <label>Note title: </label>
+                  <input type="text" name='name'></input>
+                </div>
+                <div>
+                  <label>Note text: </label>
+                  <textarea name='content'></textarea>
+                </div>
+                <div class="form-footer"><button class="buttom" type="submit">Add</button></div>
+              </form>
+        </div>
+
+        <div class="edit-note hide">
+          <form class="edit-form">
+              <h2>Edit note</h2>
+              <div class="edit-value">
+                <label>Note type: </label>
+                <select name="category" required="required" id="edit-category">
+                  <option value="">Choose a note type</option>
+                  <option value="task">Task</option>
+                  <option value="thought">Random thought</option>
+                  <option value="idea">Idea</option>
+                </select> 
+              </div>
+              <div>
+                <label>Note title: </label>
+                <input required="required" type="text" name="name" id="edit-name"></input>
+              </div>
+              <div>
+                <label>Note text: </label>
+                <textarea name='content' id="edit-content"></textarea>
+              </div>
+              <div class="form-footer"><button class="buttom" type="submit">Edit</button></div>
+            </form>
+      </div>
+
+      <div class='archive'>
+        <table class='archive-table'>
+          <thead>
+              <tr id="all-archive">
+                  <th></th>
+                  <th>Note Category</th>
+                  <th>Active</th>
+                  <th>Archived</th>
+              </tr>
+          </thead>
+          <tbody class="table-body-archive">
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <script type="module" src="./task1.js"></script>
+</body>
+</html>
+
+
