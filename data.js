@@ -6,6 +6,7 @@ export let notes = [
     category: "Task",
     content: "Tomatoes, bread, sugar",
     dates: "",
+    status: "active",
   },
   {
     icon: '<i class="fas fa-comment-dots"></i>',
@@ -14,6 +15,7 @@ export let notes = [
     category: "Random thought",
     content: "The evolution is a process",
     dates: "",
+    status: "active",
   },
   {
     icon: '<i class="fas fa-exclamation-circle"></i>',
@@ -22,6 +24,7 @@ export let notes = [
     category: "Idea",
     content: "Introduce new improvements",
     dates: "",
+    status: "active",
   },
   {
     icon: '<i class="fas fa-shopping-cart"></i>',
@@ -30,6 +33,7 @@ export let notes = [
     category: "Task",
     content: "The lean startup",
     dates: "",
+    status: "active",
   },
   {
     icon: '<i class="fas fa-comment-dots"></i>',
@@ -38,6 +42,7 @@ export let notes = [
     category: "Random thought",
     content: "There is always not enough time",
     dates: "",
+    status: "active",
   },
   {
     icon: '<i class="fas fa-exclamation-circle"></i>',
@@ -46,6 +51,7 @@ export let notes = [
     category: "Idea",
     content: "Delete unused scripts",
     dates: "",
+    status: "active",
   },
   {
     icon: '<i class="fas fa-shopping-cart"></i>',
@@ -54,6 +60,7 @@ export let notes = [
     category: "Task",
     content: "Book tickets to Italy",
     dates: "",
+    status: "active",
   },
 ];
 
@@ -67,16 +74,4 @@ export const cat = {
   idea: "Idea",
   task: "Task",
   thought: "Random thought",
-};
-
-export let activeCatCount = {
-  idea: 2,
-  task: 3,
-  thought: 2,
-};
-
-export let archiveCatCount = {
-  idea: 0,
-  task: 0,
-  thought: 0,
 };

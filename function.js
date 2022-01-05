@@ -9,8 +9,36 @@ function dateFromUnixTime(time) {
 }
 
 export function tableRender(arr, selector) {
-  let tableBody = document.querySelector(selector);
-  let arrayOfTableRows = arr.map(
+  const tableBody = document.querySelector(selector);
+
+  const activeIdeaCount = document.querySelector(".active-idea");
+  const archiveIdeaCount = document.querySelector(".archive-idea");
+  const activeTaskCount = document.querySelector(".active-task");
+  const archiveTaskCount = document.querySelector(".archive-task");
+  const activeThoughtCount = document.querySelector(".active-thought");
+  const archiveThoughtCount = document.querySelector(".archive-thought");
+  let activeNotesArray = arr.filter((elem) => elem.status == "active");
+  let archiveNotesArray = arr.filter((elem) => elem.status == "archive");
+  activeIdeaCount.innerHTML = activeNotesArray.filter(
+    (elem) => elem.category == "Idea"
+  ).length;
+  archiveIdeaCount.innerHTML = archiveNotesArray.filter(
+    (elem) => elem.category == "Idea"
+  ).length;
+  activeTaskCount.innerHTML = activeNotesArray.filter(
+    (elem) => elem.category == "Task"
+  ).length;
+  archiveTaskCount.innerHTML = archiveNotesArray.filter(
+    (elem) => elem.category == "Task"
+  ).length;
+  activeThoughtCount.innerHTML = activeNotesArray.filter(
+    (elem) => elem.category == "Random thought"
+  ).length;
+  archiveThoughtCount.innerHTML = archiveNotesArray.filter(
+    (elem) => elem.category == "Random thought"
+  ).length;
+
+  let arrayOfTableRows = activeNotesArray.map(
     (item) => `<tr id=${item.created}>
       <td>${item.icon}</td>
       <td>${item.name}</td>
@@ -30,10 +58,6 @@ export function tableRender(arr, selector) {
   return (tableBody.innerHTML = out);
 }
 
-function summaryTable(arr) {
-  let;
-}
-
 export function createNote() {
   document.querySelector(".add-note").classList.remove("hide");
   document.querySelector(".edit-note").classList.add("hide");
@@ -42,10 +66,8 @@ export function createNote() {
     .addEventListener("submit", function (event) {
       event.preventDefault();
       let data = event.target.elements;
-      console.log(data);
       let icon = icons[data.category.value];
       let category = cat[data.category.value];
-
       let name = data.name.value;
       let content = data.content.value;
       const regExp =
@@ -55,7 +77,8 @@ export function createNote() {
         dates = content.match(regExp);
       }
       let time = Date.now();
-      addNote(icon, name, time, category, content, dates);
+      let status = "active";
+      addNote(icon, name, time, category, content, dates, status);
       data.category.value = "";
       data.name.value = "";
       data.content.value = "";
@@ -63,7 +86,7 @@ export function createNote() {
     });
 }
 
-function addNote(icon, name, created, category, content, dates) {
+function addNote(icon, name, created, category, content, dates, status) {
   if (category) {
     let newNote = {
       icon: icon,
@@ -72,6 +95,7 @@ function addNote(icon, name, created, category, content, dates) {
       category: category,
       content: content,
       dates: dates,
+      status: status,
     };
     notes.push(newNote);
     tableRender(notes, ".table-body");
@@ -95,7 +119,7 @@ export function actions() {
         deleteAllNotes();
       }
       if (elem.classList.contains("archive-all")) {
-        archiveAllNotes(event);
+        archiveAllNotes();
       }
     })
   );
@@ -118,10 +142,8 @@ function editNote(event) {
         .addEventListener("submit", function (event) {
           event.preventDefault();
           let data = event.target.elements;
-          console.log(data.category.value);
           notes[i].icon = icons[data.category.value];
           notes[i].category = cat[data.category.value];
-          console.log(data);
           notes[i].name = data.name.value;
           notes[i].content = data.content.value;
           const regExp =
@@ -141,9 +163,14 @@ function editNote(event) {
 }
 
 function archiveNote(event) {
-  console.log("archive");
   let noteId = event.path[2].id;
-  console.log(noteId);
+  for (let i = 0; i < notes.length; i++) {
+    if (notes[i].created == noteId) {
+      notes[i].status = "archive";
+    }
+  }
+  tableRender(notes, ".table-body");
+  actions();
 }
 
 function deleteNote(event) {
@@ -163,8 +190,8 @@ function deleteAllNotes() {
   actions();
 }
 
-function archiveAllNotes(event) {
-  console.log("archive all");
-  let noteId = event.path[2].id;
-  console.log(noteId);
+function archiveAllNotes() {
+  notes.forEach((elem) => (elem.status = "archive"));
+  tableRender(notes, ".table-body");
+  actions();
 }

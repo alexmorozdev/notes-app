@@ -115,6 +115,9 @@ textarea {
   table {
     margin: 10px auto;
   }
+  .archive-table {
+    min-width: 90%;
+  }
   th,
   td {
     padding: 5px;
@@ -128,6 +131,9 @@ textarea {
   }
   table {
     margin: 10px auto;
+  }
+  .archive-table {
+    min-width: 95%;
   }
   th,
   td {
