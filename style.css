@@ -31,7 +31,8 @@ h6 {
   border-collapse: collapse;
 }
 
-.archive-table {
+.archive-table,
+.archived-notes-table {
   max-width: 1000px;
   min-width: 80%;
   table-layout: fixed;

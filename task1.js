@@ -1,7 +1,17 @@
 import { notes } from "./data.js";
-import { tableRender, createNote, actions } from "./function.js";
+import { createNote, actions } from "./functions.js";
+import {
+  notesTableRender,
+  statusTableRender,
+  archivedTableRender,
+} from "./render_functions.js";
 
-tableRender(notes, ".table-body");
+notesTableRender(notes, ".table-body");
+
+statusTableRender(notes);
+
+archivedTableRender(notes);
+
 document.querySelector(".create-note").onclick = createNote;
 
 actions();
